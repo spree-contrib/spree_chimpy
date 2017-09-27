@@ -7,7 +7,7 @@ describe Spree::Chimpy::SubscribersController do
 
   context '#create' do
     it 'raise error when empty hash found' do
-      expect { spree_post :create, chimpy_subscriber: {} }.to raise_error
+      expect { post :create, params: { chimpy_subscriber: {} } }.to raise_error
     end
   end
 end

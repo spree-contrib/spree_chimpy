@@ -1,4 +1,5 @@
 require 'spree_core'
+require 'spree_extension'
 require 'spree/chimpy/engine'
 require 'spree/chimpy/subscription'
 require 'spree/chimpy/workers/delayed_job'
