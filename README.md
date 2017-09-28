@@ -1,6 +1,7 @@
 # Spree/MailChimp Integration
 
-[![Code Climate](https://codeclimate.com/github/DynamoMTL/spree_chimpy.png)](https://codeclimate.com/github/spree-contrib/spree_chimpy)
+[![Build Status](https://travis-ci.org/spree-contrib/spree_chimpy.svg?branch=master)](https://travis-ci.org/spree-contrib/spree_chimpy)
+[![Code Climate](https://codeclimate.com/github/spree-contrib/spree_chimpy/badges/gpa.svg)](https://codeclimate.com/github/spree-contrib/spree_chimpy)
 
 Makes it easy to integrate your [Spree][1] app with [MailChimp][2].
 
@@ -38,13 +39,7 @@ Makes it easy to integrate your [Spree][1] app with [MailChimp][2].
 Add spree_chimpy to your `Gemfile`:
 
 ```ruby
-gem 'spree_chimpy'
-```
-
-Alternatively you can use the git repo directly:
-
-```ruby
-gem 'spree_chimpy', github: 'DynamoMTL/spree_chimpy', branch: 'master'
+gem 'spree_chimpy', github: 'spree-contrib/spree_chimpy', branch: 'master'
 ```
 
 Run bundler:
@@ -188,7 +183,7 @@ Copyright (c) 2014 [Joshua Nussbaum][8] and [contributors][9], released under th
 [3]: http://kb.mailchimp.com/article/what-is-ecommerce360-and-how-does-it-work-with-mailchimp
 [4]: https://login.mailchimp.com/signup
 [5]: http://www.fsf.org/licensing/essays/free-sw.html
-[6]: https://github.com/DynamoMTL/spree_chimpy/issues
-[7]: https://github.com/DynamoMTL/spree_chimpy/tree/master/LICENSE.md
+[6]: https://github.com/spree-contrib/spree_chimpy/issues
+[7]: https://github.com/spree-contrib/spree_chimpy/tree/master/LICENSE.md
 [8]: https://github.com/joshnuss
-[9]: https://github.com/DynamoMTL/spree_chimpy/contributors
+[9]: https://github.com/spree-contrib/spree_chimpy/contributors
