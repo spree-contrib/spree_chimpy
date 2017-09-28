@@ -73,7 +73,7 @@ describe Spree::Chimpy::Interface::CustomerUpserter do
     it "retrieves based on the customer_id" do
       expect(customer_api).to receive(:retrieve)
         .with(params: { "fields" => "id,email_address"})
-        .and_return({ "id" => "customer_#{order.user_id}", "email_address" => order.email})
+        .and_return(Gibbon::Response.new(body: { "id" => "customer_#{order.user_id}", "email_address" => order.email}))
 
       customer_id = interface.send(:upsert_customer)
       expect(customer_id).to eq "customer_#{order.user_id}"
@@ -119,7 +119,7 @@ describe Spree::Chimpy::Interface::CustomerUpserter do
 
       expect(customers_api).to receive(:retrieve)
         .with(params: { "fields" => "customers.id", "email_address" => email})
-        .and_return({ "customers" => [{"id" => "customer_xyz"}] })
+        .and_return(Gibbon::Response.new(body: { "customers" => [{"id" => "customer_xyz"}] }))
 
       id = interface.customer_id_from_eid("id-abcd")
       expect(id).to eq "customer_xyz"

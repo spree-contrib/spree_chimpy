@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.author    = 'Joshua Nussbaum'
   s.email     = 'josh@godynamo.com'
-  s.homepage  = 'http://www.godynamo.com'
+  s.homepage  = 'http://github.com/spree-contrib/spree_chimpy'
   s.license   = %q{BSD-3}
 
   s.files        = `git ls-files`.split("\n")
@@ -19,7 +19,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'spree_core', '>= 3.1.0', '< 4.0'
   s.add_dependency 'spree_extension'
-  s.add_dependency 'gibbon', '~> 2.2'
+  s.add_dependency 'gibbon', '~> 3.0'
 
   s.add_development_dependency 'rspec-rails'
   s.add_development_dependency 'rubocop'

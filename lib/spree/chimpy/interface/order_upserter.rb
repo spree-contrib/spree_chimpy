@@ -34,7 +34,7 @@ module Spree::Chimpy
 
       def find_and_update_order(data)
         # retrieval is checks if the order exists and raises a Gibbon::MailChimpError when not found
-        response = store_api_call.orders(@order.number).retrieve(params: { "fields" => "id" })
+        store_api_call.orders(@order.number).retrieve(params: { "fields" => "id" })
         log "Order #{@order.number} exists, updating data"
         store_api_call.orders(@order.number).update(body: data)
       end
