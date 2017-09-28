@@ -9,11 +9,11 @@ describe Spree::Chimpy::Interface::List do
   #let(:lists)             { double(:lists, [{"name" => "Members", "id" => list_id }] ) }
   let(:key)               { '857e2096b21e5eb385b9dce2add84434-us14' }
 
-  let(:lists_response)    { {"lists"=>[{"id"=>list_id, "name"=>"Members"}]} }
-  let(:segments_response) { {"segments"=>[{"id"=>segment_id, "name"=>"Customers"}]} }
-  let(:info_response)     { {"email_address"=>email, "merge_fields"=>{"FNAME"=>"Jane", "LNAME"=>"Doe","SIZE" => '10'}} }
-  let(:merge_response)    { {"merge_fields"=>[{"tag"=>"FNAME", "name"=>"First Name"}, {"tag"=>"LNAME", "name"=>"Last Name"}]} }
-  let(:members_response)  { {"members"=> [{"id" => "customer_123", "email_address"=>email, "unique_email_id"=>mc_eid, "email_type"=>"html", "status"=>"subscribed", "merge_fields"=>{"FNAME"=>"", "LNAME"=>"", "SIZE"=>"10"}}] } }
+  let(:lists_response)    { Gibbon::Response.new(body: {"lists"=>[{"id"=>list_id, "name"=>"Members"}]}) }
+  let(:segments_response) { Gibbon::Response.new(body: {"segments"=>[{"id"=>segment_id, "name"=>"Customers"}]}) }
+  let(:info_response)     { Gibbon::Response.new(body: {"email_address"=>email, "merge_fields"=>{"FNAME"=>"Jane", "LNAME"=>"Doe","SIZE" => '10'}}) }
+  let(:merge_response)    { Gibbon::Response.new(body: {"merge_fields"=>[{"tag"=>"FNAME", "name"=>"First Name"}, {"tag"=>"LNAME", "name"=>"Last Name"}]}) }
+  let(:members_response)  { Gibbon::Response.new(body: {"members"=> [{"id" => "customer_123", "email_address"=>email, "unique_email_id"=>mc_eid, "email_type"=>"html", "status"=>"subscribed", "merge_fields"=>{"FNAME"=>"", "LNAME"=>"", "SIZE"=>"10"}}] }) }
 
   let(:email)             { 'user@example.com' }
 
@@ -103,7 +103,7 @@ describe Spree::Chimpy::Interface::List do
       it "returns nil when empty array returned" do
         expect(members_api).to receive(:retrieve).with(
           params: { "unique_email_id" => mc_eid, "fields" => "members.id,members.email_address" }
-        ).and_return({ "members" => [] })
+        ).and_return(Gibbon::Response.new(body: { "members" => [] }))
         expect(interface.email_for_id(mc_eid)).to be_nil
       end
       it "returns nil on error" do

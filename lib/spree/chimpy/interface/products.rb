@@ -2,7 +2,7 @@ module Spree::Chimpy
   module Interface
     class Products
       delegate :log, :store_api_call, to: Spree::Chimpy
-      include Rails.application.routes.url_helpers
+      include Spree.railtie_routes_url_helpers
 
       def initialize(variant)
         @variant = variant
@@ -52,6 +52,7 @@ module Spree::Chimpy
         response = store_api_call
           .products(@variant.product.id)
           .retrieve(params: { "fields" => "id" })
+          .body
         !response["id"].nil?
       rescue Gibbon::MailChimpError => e
         false
@@ -109,7 +110,7 @@ module Spree::Chimpy
           product_url(product)
         else
           URI::HTTP.build({
-            host: Rails.application.routes.default_url_options[:host],
+            host: Spree::Store.current.url,
             :path => "/products/#{product.slug}"}
           ).to_s
         end

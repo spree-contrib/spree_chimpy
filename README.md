@@ -1,7 +1,6 @@
 # Spree/MailChimp Integration
 
-[![Build Status](https://app.wercker.com/status/03e07999926ddaf022b4ad7ec6460f27/s "wercker status")](https://app.wercker.com/project/bykey/03e07999926ddaf022b4ad7ec6460f27)
-[![Code Climate](https://codeclimate.com/github/DynamoMTL/spree_chimpy.png)](https://codeclimate.com/github/DynamoMTL/spree_chimpy)
+[![Code Climate](https://codeclimate.com/github/DynamoMTL/spree_chimpy.png)](https://codeclimate.com/github/spree-contrib/spree_chimpy)
 
 Makes it easy to integrate your [Spree][1] app with [MailChimp][2].
 
@@ -33,11 +32,6 @@ Makes it easy to integrate your [Spree][1] app with [MailChimp][2].
 > Communication between Spree and MailChimp is synchronous by default. If you
 > have `delayed_job` in your bundle, the communication is queued up and
 > deferred to one of your workers. (`sidekiq` support also planned).
-
-**Angular.js/Sprangular**
-> You can integrate it
-> with [sprangular](https://github.com/sprangular/sprangular) by using
-> the [sprangular_chimpy](https://github.com/sprangular/sprangular_chimpy) gem.
 
 ## Installing
 

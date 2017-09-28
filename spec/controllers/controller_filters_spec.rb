@@ -26,7 +26,7 @@ describe ::Spree::StoreController do
   it 'sets the attributes for the order if eid/cid is set in the params' do
     expect(subject).to receive(:find_mail_chimp_params)
 
-    get :index, mc_eid: '1234', mc_cid: 'abcd'
+    get :index, params: { mc_eid: '1234', mc_cid: 'abcd'}
   end
 
   it 'does not call find mail chimp params method if no eid/cid' do

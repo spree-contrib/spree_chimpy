@@ -1,12 +1,11 @@
 require 'spec_helper'
 
 describe 'Subscribers' do
-
   context 'with valid subscription' do
     it 'redirects to referer' do
-      post '/subscribers',
-        { chimpy_subscriber: { email: 'foo2@bar.com', subscribed: true } },
-        { referer: 'http://foo.bar' }
+      post '/subscribers', params: {
+          chimpy_subscriber: { email: 'foo2@bar.com', subscribed: true }  },
+          headers: { referer: 'http://foo.bar' }
 
       expect(response).to be_redirect
       expect(response.location).to eq('http://foo.bar')
@@ -14,8 +13,8 @@ describe 'Subscribers' do
 
     it 'redirects to root URL if no referer' do
       post '/subscribers',
-        { chimpy_subscriber: { email: 'foo2@bar.com', subscribed: true } },
-        { referer: nil }
+        params: { chimpy_subscriber: { email: 'foo2@bar.com', subscribed: true } },
+        headers: { referer: nil }
 
       expect(response).to be_redirect
       expect(response.location).to eq('http://www.example.com/')
@@ -24,7 +23,7 @@ describe 'Subscribers' do
 
   context 'with json response' do
     it 'returns 200 with json data' do
-      post '/subscribers', format: :json, chimpy_subscriber: { email: 'foo2@bar.com', subscribed: true }
+      post '/subscribers', params: { format: :json, chimpy_subscriber: { email: 'foo2@bar.com', subscribed: true } }
 
       expect(response).to be_success
       json_response = JSON.parse(response.body)

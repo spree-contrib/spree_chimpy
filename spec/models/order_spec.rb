@@ -22,7 +22,7 @@ describe Spree::Order do
 
     it 'doesnt update when order is not completed' do
       expect(subject).to_not receive(:enqueue)
-      @not_completed_order.update!
+      @not_completed_order.update_with_updater!
     end
 
     it 'updates when order is completed' do

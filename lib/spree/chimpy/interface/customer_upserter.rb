@@ -27,6 +27,7 @@ module Spree::Chimpy
             response = store_api_call
               .customers
               .retrieve(params: { "fields" => "customers.id", "email_address" => email })
+              .body
 
             data = response["customers"].first
             data["id"] if data
@@ -46,6 +47,7 @@ module Spree::Chimpy
           response = store_api_call
             .customers(customer_id)
             .retrieve(params: { "fields" => "id,email_address"})
+            .body
         rescue Gibbon::MailChimpError => e
           # Customer Not Found, so create them
           response = store_api_call
