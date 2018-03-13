@@ -15,11 +15,16 @@ module Spree::Chimpy
     def set_mailchimp_params
       @mc_eid = params[:mc_eid] || session[:mc_eid]
       @mc_cid = params[:mc_cid] || session[:mc_cid]
+
+      # The MC params need to be retained in the SESSION for proper tracking
+      # until they can be attached to an Order
+      session[:mc_eid] = mc_eid
+      session[:mc_cid] = mc_cid
     end
 
     def mailchimp_params?
       (!mc_eid.nil? || !mc_cid.nil?) &&
-        (!session[:order_id].nil? || !params[:record_mc_details].nil?)
+        (!current_order.nil? || !params[:record_mc_details].nil?)
     end
 
     def find_mail_chimp_params
@@ -29,6 +34,9 @@ module Spree::Chimpy
       else
         current_order.create_source(attributes)
       end
+
+      session[:mc_cid] = nil
+      session[:mc_eid] = nil
     end
   end
 end

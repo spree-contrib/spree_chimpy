@@ -14,7 +14,7 @@ describe Spree::Chimpy::Interface::Products do
 
   describe "ensure_products" do
     let(:order) {
-      allow_any_instance_of(Spree::Order).to receive(:notify_mail_chimp).and_return(true)
+      allow_any_instance_of(Spree::Order).to receive(:send_order_to_mail_chimp).and_return(true)
       create(:completed_order_with_totals)
     }
 

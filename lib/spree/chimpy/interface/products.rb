@@ -82,19 +82,26 @@ module Spree::Chimpy
         if @product.respond_to?(:available_on) && @product.available_on
           data[:published_at_foreign] = @product.available_on.to_formatted_s(:db)
         end
+
         data
       end
 
       def self.variant_hash(variant)
-        {
+        data = {
           id: mailchimp_variant_id(variant),
           title: variant.name,
           sku: variant.sku,
           url: product_url_or_default(variant.product),
           price: variant.price.to_f,
-          image_url: variant_image_url(variant),
+
           inventory_quantity: variant.total_on_hand == Float::INFINITY ? 999 : variant.total_on_hand
         }
+
+        if variant.images.any?
+          data[:image_url] = variant_image_url variant
+        end
+
+        data
       end
 
       def self.variant_image_url(variant)
