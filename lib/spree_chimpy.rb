@@ -3,8 +3,6 @@ require 'spree_extension'
 require 'spree/chimpy/engine'
 require 'spree/chimpy/subscription'
 require 'spree/chimpy/workers/delayed_job'
-require 'spree/chimpy/interface/orders'
-require 'spree/chimpy/interface/list'
 require 'gibbon'
 require 'coffee_script'
 
@@ -41,6 +39,7 @@ module Spree::Chimpy
   end
 
   def list
+    require 'spree/chimpy/interface/list'
     @list ||= Interface::List.new(Config.list_name,
                         Config.customer_segment_name,
                         Config.double_opt_in,
@@ -49,6 +48,7 @@ module Spree::Chimpy
   end
 
   def orders
+    require 'spree/chimpy/interface/orders'
     @orders ||= Interface::Orders.new if configured?
   end
 
