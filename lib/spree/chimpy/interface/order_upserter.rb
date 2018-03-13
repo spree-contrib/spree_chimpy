@@ -1,3 +1,6 @@
+require_relative 'customer_upserter'
+require_relative 'products'
+
 module Spree::Chimpy
   module Interface
     class OrderUpserter

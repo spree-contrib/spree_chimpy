@@ -1,3 +1,5 @@
+require_relative 'order_upserter'
+
 module Spree::Chimpy
   module Interface
     class Orders
