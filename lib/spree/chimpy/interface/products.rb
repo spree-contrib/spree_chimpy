@@ -99,6 +99,7 @@ module Spree::Chimpy
         if variant.images.any?
           data[:image_url] = variant_image_url variant
         end
+        
         data
       end
 
