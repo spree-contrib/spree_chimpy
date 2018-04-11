@@ -52,6 +52,10 @@ module Spree::Chimpy
     @orders ||= Interface::Orders.new if configured?
   end
 
+  def carts
+    @carts ||= Interface::Carts.new if configured?
+  end
+
   def list_exists?
     list.list_id
   end
@@ -118,18 +122,31 @@ module Spree::Chimpy
   end
 
   def perform(payload)
-    return unless configured?
+    begin
+      return unless configured?
 
-    event  = payload[:event].to_sym
-    object = payload[:object] || payload[:class].constantize.find(payload[:id])
+      event  = payload[:event].to_sym
+      object = payload[:object] || payload[:class].constantize.find(payload[:id])
 
-    case event
-    when :order
-      orders.sync(object)
-    when :subscribe
-      list.subscribe(object.email, merge_vars(object), customer: object.is_a?(Spree.user_class))
-    when :unsubscribe
-      list.unsubscribe(object.email)
+      case event
+      when :order
+        orders.sync(object)
+      when :cart
+        carts.sync(object)
+      when :subscribe
+        list.subscribe(object.email, merge_vars(object), customer: object.is_a?(Spree.user_class))
+      when :unsubscribe
+        list.unsubscribe(object.email)
+      end
+    rescue => e
+      Rails.logger.error '**********   BEGIN: SPREE CHIMPY ERROR TRACE   **********'
+      Rails.logger.error 'An unexcepted error occurred when sending the order to Mailchimp: '
+      Rails.logger.error e.message
+      e.backtrace.each do |trace|
+            Rails.logger.error "     ERROR:     #{trace}"
+      end
+
+      Rails.logger.error '**********   END: SPREE CHIMPY ERROR TRACE   **********'
     end
   end
 end

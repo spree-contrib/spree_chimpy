@@ -82,6 +82,7 @@ module Spree::Chimpy
         if @product.respond_to?(:available_on) && @product.available_on
           data[:published_at_foreign] = @product.available_on.to_formatted_s(:db)
         end
+
         data
       end
 
@@ -99,7 +100,7 @@ module Spree::Chimpy
         if variant.images.any?
           data[:image_url] = variant_image_url variant
         end
-        
+
         data
       end
 

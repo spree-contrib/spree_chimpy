@@ -15,8 +15,8 @@ describe Spree::Chimpy::Interface::OrderUpserter do
     user  = create(:user, email: options[:email])
 
     # we need to have a saved order in order to have a non-nil order number
-    # we need to stub :notify_mail_chimp otherwise sync will be called on the order on update!
-    allow_any_instance_of(Spree::Order).to receive(:notify_mail_chimp).and_return(true)
+    # we need to stub :send_order_to_mail_chimp otherwise sync will be called on the order on update!
+    allow_any_instance_of(Spree::Order).to receive(:send_order_to_mail_chimp).and_return(true)
     order = create(:completed_order_with_totals, user: user, email: options[:email])
     order.source = Spree::Chimpy::OrderSource.new(email_id: options[:email_id], campaign_id: options[:campaign_id])
     order.save
