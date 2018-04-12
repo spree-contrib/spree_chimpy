@@ -53,6 +53,7 @@ module Spree::Chimpy
   end
 
   def carts
+    require 'spree/chimpy/interface/carts'
     @carts ||= Interface::Carts.new if configured?
   end
 
