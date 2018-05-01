@@ -1,3 +1,6 @@
+require_relative 'customer_upserter'
+require_relative 'products'
+
 module Spree::Chimpy
   module Interface
     class CartUpserter < SpreeOrderUpserter
@@ -20,15 +23,15 @@ module Spree::Chimpy
       def add_or_update_cart
 
         data = cart_hash
-        log "Adding order #{@order.number} for #{data[:customer][:id]}"
+        log "Adding cart #{@order.number} for #{data[:customer][:id]}"
 
         if (data[:campaign_id])
-          log "Order #{@order.number} is linked to campaign #{data[:campaign_id]}"
+          log "Cart #{@order.number} is linked to campaign #{data[:campaign_id]}"
         end
         begin
           find_and_update_cart(data)
         rescue Gibbon::MailChimpError => e
-          log "Order #{@order.number} Not Found, creating cart"
+          log "Cart #{@order.number} Not Found, creating cart"
           create_cart(data)
         end
       end
