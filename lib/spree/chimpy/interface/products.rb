@@ -113,14 +113,15 @@ module Spree::Chimpy
       end
 
       def self.product_url_or_default(product)
-        if self.respond_to?(:product_url)
-          product_url(product)
-        else
-          URI::HTTP.build({
-            host: Spree::Store.current.url,
-            :path => "/products/#{product.slug}"}
-          ).to_s
-        end
+          if self.respond_to?(:product_url)
+              product_url(product)
+          else
+              #throw "#{Spree::Store.current.url.gsub(/(^\w+:|^)\/\//,'')}"
+              URI::HTTP.build({
+                host: Spree::Store.current.url.gsub(/(^\w+:|^)\/\//,''),
+                :path => "/products/#{product.slug}"}
+              ).to_s
+          end
       end
     end
   end

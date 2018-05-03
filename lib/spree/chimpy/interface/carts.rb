@@ -1,3 +1,5 @@
+require_relative 'cart_upserter'
+
 module Spree::Chimpy
   module Interface
     class Carts
