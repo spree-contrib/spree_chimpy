@@ -7,7 +7,7 @@ module Spree::Chimpy
 
       def cart_hash
         data = common_hash
-        data[:checkout_url] = "#{Spree::Store.current.url}/orders/#{@order.number}"
+        data[:checkout_url] = "#{Spree::Store.current.url}/orders/#{@order.number}/edit"
 
         data
       end
