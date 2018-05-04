@@ -34,6 +34,9 @@ module Spree::Chimpy
       else
         current_order.create_source(attributes)
       end
+
+      session[:mc_cid] = nil
+      session[:mc_eid] = nil
     end
   end
 end

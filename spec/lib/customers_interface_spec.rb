@@ -8,7 +8,7 @@ describe Spree::Chimpy::Interface::CustomerUpserter do
   let(:campaign_id) { "campaign-1" }
 
   let(:order) {
-    allow_any_instance_of(Spree::Order).to receive(:notify_mail_chimp).and_return(true)
+    allow_any_instance_of(Spree::Order).to receive(:send_order_to_mail_chimp).and_return(true)
     order = create(:completed_order_with_totals)
     order.source = Spree::Chimpy::OrderSource.new(email_id: email_id, campaign_id: campaign_id)
     order.save
