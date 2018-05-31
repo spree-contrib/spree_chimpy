@@ -1,5 +1,6 @@
 require_relative 'customer_upserter'
 require_relative 'products'
+require_relative 'spree_order_upserter'
 
 module Spree::Chimpy
   module Interface
