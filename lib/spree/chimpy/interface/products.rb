@@ -39,7 +39,6 @@ module Spree::Chimpy
         all_variants = @product.variants.any? ? @product.variants : [@product.master]
         all_variants.each do |v|
           data = self.class.variant_hash(v)
-          data.delete(:id)
 
           store_api_call
             .products(v.product_id)
