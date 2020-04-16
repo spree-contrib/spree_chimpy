@@ -1,3 +1,7 @@
+⚠️ Deprecation notice ⚠️
+
+This gem is not maintaned anymore. Please use [Spree Mailchimp eCcommerce extension](https://github.com/spree-contrib/spree_mailchimp_ecommerce)
+
 # Spree/MailChimp Integration
 
 [![Build Status](https://travis-ci.org/spree-contrib/spree_chimpy.svg?branch=master)](https://travis-ci.org/spree-contrib/spree_chimpy)
