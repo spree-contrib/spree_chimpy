@@ -1,4 +1,4 @@
-⚠️ Deprecation notice ⚠️
+# ⚠️ Deprecation notice ⚠️
 
 This gem is not maintaned anymore. Please use [Spree Mailchimp eCcommerce extension](https://github.com/spree-contrib/spree_mailchimp_ecommerce)
 
